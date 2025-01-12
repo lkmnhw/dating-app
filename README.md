@@ -23,15 +23,17 @@ cd dating-app
 go mod tidy
 ```
 - Set .env
-| Variable | Descriptio|
-|----------|----------|
-| PORT | Specifies the port on which the application will run. |
-| DATABASE_SOURCE | MongoDB connection string. |
-| DATABASE_NAME | MongoDB database name. |
-| COLLECTION_USERS | The name of the MongoDB collection used to store user data. |
-| COLLECTION_PROFILES |The name of the MongoDB collection used to store user profile data. |
-| COLLECTION_MATCHES | The name of the MongoDB collection used to store match data between users. |
-| JWT_SECRET_KEY | A secret key used for signing and verifying JSON Web Tokens (JWT) for user authentication. |
+
+| **Variable**           | **Description**                                                                                                         |
+|------------------------|-------------------------------------------------------------------------------------------------------------------------|
+| `PORT`                 | Specifies the port on which the application will run.                                                                   |
+| `DATABASE_SOURCE`      | MongoDB connection string.                                                                                               |
+| `DATABASE_NAME`        | MongoDB database name.                                                                                                   |
+| `COLLECTION_USERS`     | The name of the MongoDB collection used to store user data.                                                             |
+| `COLLECTION_PROFILES`  | The name of the MongoDB collection used to store user profile data.                                                     |
+| `COLLECTION_MATCHES`   | The name of the MongoDB collection used to store match data between users.                                               |
+| `JWT_SECRET_KEY`       | A secret key used for signing and verifying JSON Web Tokens (JWT) for user authentication. This key should be kept private. |
+
 
 - or genererate .env (key: dating-app)
 ```bash
@@ -97,3 +99,21 @@ curl --location 'http://localhost:3000/feed' \
 --header 'Authorization: Bearer your_jwt_token'
 ```
 - or import postman collection from postman folder
+
+## Repository Structure
+```bash
+/api                    # API-specific folders for request and response formats
+├── /request            # Defines the structure for incoming request payloads
+├── /response           # Defines the structure for outgoing response payloads
+/app_config             # Configuration files for environment variables, app settings, etc.
+/internal
+├── /auth               # Authentication-related logic
+├── /databases          # Database setup
+├── /entities           # Data models or entities, defining the structure of the app's data
+├── /handlers           # HTTP request handlers for controlling requests
+├── /helpers            # Helper functions for common tasks
+├── /repository/core    # Core repository layer for interacting with databases
+├── /servers            # Application setup, HTTP server
+├── /services           # Business logic and core functionality of the app
+
+```
